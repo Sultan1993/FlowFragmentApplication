@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/dashboard_nav_graph"
+    app:startDestination="@id/notificationsFragment">
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="kz.maestrosultan.flowfragment.notifications.presentation.NotificationsFragment"
+        android:label="NotificationsFragment" >
+        <action
+            android:id="@+id/action_notificationsFragment_to_authFlowFragment"
+            app:destination="@id/authFlowFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/authFlowFragment"
+        android:name="kz.maestrosultan.flowfragment.auth.AuthFlowFragment"
+        android:label="AuthFlowFragment" />
+
+</navigation>

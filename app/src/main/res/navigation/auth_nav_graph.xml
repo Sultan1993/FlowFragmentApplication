@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/dashboard_nav_graph"
+    app:startDestination="@id/authPhoneFragment">
+    <fragment
+        android:id="@+id/authPhoneFragment"
+        android:name="kz.maestrosultan.flowfragment.auth.presentation.AuthPhoneFragment"
+        android:label="AuthPhoneFragment" >
+        <action
+            android:id="@+id/action_authPhoneFragment_to_authOTPFragment"
+            app:destination="@id/authOTPFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/authOTPFragment"
+        android:name="kz.maestrosultan.flowfragment.auth.presentation.AuthOTPFragment"
+        android:label="AuthOTPFragment" />
+</navigation>
