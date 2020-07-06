@@ -1,16 +1,15 @@
 package kz.maestrosultan.flowfragment.auth.presentation
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import kz.maestrosultan.flowfragment.R
 import kz.maestrosultan.flowfragment.core.extensions.finishFlow
 import kz.maestrosultan.flowfragment.core.extensions.popBackStack
 import kz.maestrosultan.flowfragment.databinding.FragmentAuthOtpBinding
-import kz.maestrosultan.flowfragment.databinding.FragmentAuthPhoneBinding
 
 class AuthOTPFragment : Fragment() {
 

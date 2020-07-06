@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import kz.maestrosultan.flowfragment.R
 import kz.maestrosultan.flowfragment.core.extensions.finishFlow
 import kz.maestrosultan.flowfragment.core.extensions.popBackStack
-import kz.maestrosultan.flowfragment.core.extensions.popToRoot
 import kz.maestrosultan.flowfragment.databinding.FragmentProfileDetailsBinding
 
 class ProfileDetailsFragment : Fragment() {

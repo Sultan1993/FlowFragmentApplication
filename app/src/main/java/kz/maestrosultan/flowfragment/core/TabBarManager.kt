@@ -4,7 +4,6 @@ import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kz.maestrosultan.flowfragment.R
 import kz.maestrosultan.flowfragment.core.flow.FlowNavHostFragment
 
 class TabBarManager(
