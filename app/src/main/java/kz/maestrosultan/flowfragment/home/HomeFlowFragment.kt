@@ -9,4 +9,4 @@ class HomeFlowFragment: FlowContainerFragment<HomeFlowNavHostFragment>(
     R.layout.navigation_fragment_home
 )
 
-class HomeFlowNavHostFragment: FlowNavHostFragment(true)
+class HomeFlowNavHostFragment: FlowNavHostFragment(true,  true)

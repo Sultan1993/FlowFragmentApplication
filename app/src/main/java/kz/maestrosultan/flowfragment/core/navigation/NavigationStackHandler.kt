@@ -5,7 +5,8 @@ import java.util.*
 
 data class NavigationStackItem(
     val controller: NavController,
-    val isRootFlowController: Boolean
+    val isRootFlowController: Boolean,
+    val isShowingBottomNavigation: Boolean
 )
 
 interface NavigationStackHandler {
