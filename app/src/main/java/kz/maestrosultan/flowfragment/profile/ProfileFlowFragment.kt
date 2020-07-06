@@ -15,7 +15,10 @@ data class ProfileFlowArgs(
     val toDetails: Boolean
 ): Parcelable
 
-class ProfileFlowFragment: FlowContainerFragment(R.layout.navigation_fragment_profile) {
+class ProfileFlowFragment: FlowContainerFragment<ProfileFlowNavHostFragment>(
+    ProfileFlowNavHostFragment::class.java,
+    R.layout.navigation_fragment_profile
+) {
 
     private val arguments: ProfileFlowFragmentArgs by navArgs()
 
