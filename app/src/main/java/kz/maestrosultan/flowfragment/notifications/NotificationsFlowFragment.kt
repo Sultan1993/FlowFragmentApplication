@@ -9,4 +9,4 @@ class NotificationsFlowFragment: FlowContainerFragment<NotificationsFlowNavHostF
     R.layout.navigation_fragment_notifications
 )
 
-class NotificationsFlowNavHostFragment: FlowNavHostFragment(true)
+class NotificationsFlowNavHostFragment: FlowNavHostFragment(true,  true)

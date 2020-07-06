@@ -9,4 +9,4 @@ class HistoryFlowFragment: FlowContainerFragment<HistoryFlowNavHostFragment>(
     R.layout.navigation_fragment_history
 )
 
-class HistoryFlowNavHostFragment: FlowNavHostFragment(true)
+class HistoryFlowNavHostFragment: FlowNavHostFragment(isShowingBottomNavigation = true)

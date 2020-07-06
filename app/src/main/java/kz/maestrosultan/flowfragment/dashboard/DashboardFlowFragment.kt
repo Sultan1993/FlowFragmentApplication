@@ -9,4 +9,4 @@ class DashboardFlowFragment: FlowContainerFragment<DashboardFlowNavHostFragment>
     R.layout.navigation_fragment_dashboard
 )
 
-class DashboardFlowNavHostFragment: FlowNavHostFragment(true)
+class DashboardFlowNavHostFragment: FlowNavHostFragment(true,  true)

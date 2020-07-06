@@ -11,18 +11,16 @@ import kz.maestrosultan.flowfragment.core.navigation.NavigationStackHandler
 import kz.maestrosultan.flowfragment.core.navigation.NavigationStackItem
 
 open class FlowNavHostFragment(
-    private val isRootFlowController: Boolean = false
+    private val isRootFlow: Boolean = false,
+    private val isShowingBottomNavigation: Boolean = false
 ): NavHostFragment(), NavigationFlowFragment, FlowVisibilityListener {
 
     override var navStackHandler: NavigationStackHandler? = null
 
     private val navStackItem: NavigationStackItem
         get() {
-            return if (parentFragment is DialogFragment) {
-                NavigationStackItem(navController, true)
-            } else {
-                NavigationStackItem(navController, isRootFlowController)
-            }
+            val isShowingBottomNav = isShowingBottomNavigation || parentFragment is DialogFragment
+            return NavigationStackItem(navController, isRootFlow, isShowingBottomNav)
         }
 
     override fun onAttach(context: Context) {

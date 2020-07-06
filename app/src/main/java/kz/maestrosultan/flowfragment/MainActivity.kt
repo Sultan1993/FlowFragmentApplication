@@ -14,7 +14,8 @@ import kz.maestrosultan.flowfragment.home.HomeFlowFragment
 import kz.maestrosultan.flowfragment.notifications.NotificationsFlowFragment
 import java.util.*
 
-class MainActivity : AppCompatActivity(), TabBarManager.NavHostProvider, NavigationStackHandler {
+class MainActivity : AppCompatActivity(), TabBarManager.NavHostProvider,
+    TabBarManager.OnNavigationItemChanged, NavigationStackHandler {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity(), TabBarManager.NavHostProvider, Navigat
     }
 
     override fun pushNavigationController(item: NavigationStackItem) {
-        binding.bottomNavigation.post { binding.bottomNavigation.isVisible = item.isRootFlowController }
+        binding.bottomNavigation.post { binding.bottomNavigation.isVisible = item.isShowingBottomNavigation }
 
         if (navControllerStack.contains(item)) {
             navControllerStack.remove(item)
@@ -58,17 +59,42 @@ class MainActivity : AppCompatActivity(), TabBarManager.NavHostProvider, Navigat
         if (navControllerStack.isNotEmpty()) {
             navControllerStack.pop()
 
-            val isRoot = currentNavigationItem?.isRootFlowController ?: true
-            binding.bottomNavigation.post { binding.bottomNavigation.isVisible = isRoot }
+            val isVisible = currentNavigationItem?.isShowingBottomNavigation ?: true
+            binding.bottomNavigation.post { binding.bottomNavigation.isVisible = isVisible }
         }
     }
 
     override fun onBackPressed() {
         currentNavigationItem?.let {
-            if (!it.controller.navigateUp()) {
-                popNavigationController()
-                onBackPressed()
+            if (it.isRootFlowController) {
+                if (!it.controller.navigateUp()) {
+                    if (binding.bottomNavigation.selectedItemId == R.id.navigation_home) {
+                        finish()
+                    } else {
+                        navControllerStack.clear()
+                        bottomTabController.onNavigationItemSelected(R.id.navigation_home)
+                    }
+                }
+            } else {
+                if (!it.controller.navigateUp()) {
+                    popNavigationController()
+                    onBackPressed()
+                }
             }
         } ?: finish()
+    }
+
+    override fun onTabItemChanged(itemId: Int) {
+        // on tab item changed
+    }
+
+    override fun onTabItemReselected(itemId: Int) {
+        currentNavigationItem?.let {
+            if (!it.controller.navigateUp()) {
+                if (!it.isRootFlowController) {
+                    popNavigationController()
+                }
+            }
+        }
     }
 }
