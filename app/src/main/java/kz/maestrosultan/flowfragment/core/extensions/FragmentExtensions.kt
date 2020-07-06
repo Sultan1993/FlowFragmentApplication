@@ -3,29 +3,50 @@ package kz.maestrosultan.flowfragment.core.extensions
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import java.lang.Exception
 
 fun Fragment.popBackStack() {
-    if (!findNavController().navigateUp()) {
-        activity?.onBackPressed()
+    try {
+        if (!findNavController().navigateUp()) {
+            activity?.onBackPressed()
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
     }
 }
 
 fun Fragment.popToRoot() {
-    findNavController().apply {
-        popBackStack(graph.startDestination, false)
+    try {
+        findNavController().apply {
+            popBackStack(graph.startDestination, false)
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+}
+
+fun Fragment.popToDestination(destinationId: Int) {
+    try {
+        findNavController().popBackStack(destinationId, false)
+    } catch (e: Exception) {
+        e.printStackTrace()
     }
 }
 
 fun Fragment.finishFlow() {
-    val navHost = parentFragment
-    val navContainer = navHost?.parentFragment
+    try {
+        val navHost = parentFragment
+        val navContainer = navHost?.parentFragment
 
-    if (navContainer is DialogFragment) {
-        navContainer.dismiss()
-    } else {
-        findNavController().apply {
-            popBackStack(graph.startDestination, false)
+        if (navContainer is DialogFragment) {
+            navContainer.dismiss()
+        } else {
+            findNavController().apply {
+                popBackStack(graph.startDestination, false)
+            }
+            popBackStack()
         }
-        popBackStack()
+    } catch (e: Exception) {
+        e.printStackTrace()
     }
 }
