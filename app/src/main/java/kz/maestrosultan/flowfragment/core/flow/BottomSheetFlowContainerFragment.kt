@@ -10,12 +10,13 @@ import androidx.fragment.app.Fragment
 import kz.maestrosultan.flowfragment.core.fragment.RoundedBottomSheetFullScreenDialogFragment
 
 @Suppress("UNCHECKED_CAST")
-open class BottomSheetFlowContainerFragment(
+open class BottomSheetFlowContainerFragment<NavHost: FlowNavHostFragment>(
+    private val kClass: Class<NavHost>,
     @LayoutRes private val navigationResId: Int,
     private val cancelable: Boolean = false
 ): RoundedBottomSheetFullScreenDialogFragment(cancellable = cancelable) {
 
-    protected lateinit var navHost: FlowNavHostFragment
+    protected lateinit var navHost: NavHost
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(navigationResId, container, false)
@@ -24,8 +25,8 @@ open class BottomSheetFlowContainerFragment(
     override fun onAttachFragment(childFragment: Fragment) {
         super.onAttachFragment(childFragment)
 
-        if (childFragment is FlowNavHostFragment) {
-            navHost = childFragment
+        if (kClass.isAssignableFrom(childFragment::class.java)) {
+            navHost = childFragment as NavHost
         }
     }
 
