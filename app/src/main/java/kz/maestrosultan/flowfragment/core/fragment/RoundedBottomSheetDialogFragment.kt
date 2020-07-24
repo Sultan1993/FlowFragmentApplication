@@ -2,6 +2,8 @@ package kz.maestrosultan.flowfragment.core.fragment
 
 import android.content.DialogInterface
 import android.os.Bundle
+import android.widget.FrameLayout
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kz.maestrosultan.flowfragment.R
@@ -14,7 +16,12 @@ open class RoundedBottomSheetDialogFragment(
     private val style: Int = R.style.BottomSheetTheme
 ) : BottomSheetDialogFragment() {
 
-    var dialogDismissListener: DialogDismissListener? = null
+    protected var dialogDismissListener: DialogDismissListener? = null
+
+    protected val behavior by lazy {
+        val bottomSheet = dialog?.findViewById(com.google.android.material.R.id.design_bottom_sheet) as FrameLayout
+        BottomSheetBehavior.from(bottomSheet)
+    }
 
     override fun getTheme(): Int = style
 
